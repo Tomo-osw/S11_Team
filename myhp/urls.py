@@ -3,5 +3,8 @@ from . import views
  
 app_name = 'myhp'
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.Login, name='Login'),
+    path('logout/', views.Logout, name='Logout'),
+    path('register/', views.AccountRegistration.as_view(), name='register'),
+    path('home/', views.home, name='home'),
 ]

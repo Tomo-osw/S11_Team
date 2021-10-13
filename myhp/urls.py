@@ -4,4 +4,5 @@ from . import views
 app_name = 'myhp'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('homemap', views.homemap, name='index'),
 ]

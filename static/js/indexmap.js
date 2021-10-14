@@ -12,7 +12,14 @@ function initMap() {
     map = new google.maps.Map(target, {
         center: centerp,
         zoom: 5,
+
     });
+
+    var ingressButtonDiv = document.createElement("div1");
+    var ingressButton = new ingressControl(ingressButtonDiv, map);
+
+    ingressButtonDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(ingressButtonDiv);
 
     // 検索実行ボタンが押下されたとき
     document.getElementById('search').addEventListener('click', function () {
@@ -58,6 +65,31 @@ function initMap() {
     //     deleteMakers();
     // });
 
+}
+
+function ingressControl(buttonDiv, map) {
+    var buttonUI = document.createElement("div1");
+
+    buttonUI.style.backgroundColor = "rgb(0, 79, 74)";
+    buttonUI.style.border = "1px solid #59fbea";
+    buttonUI.style.boxShadow = "rgba(0, 0, 0, 0.3) 0px 1px 4px -1px";
+    buttonUI.style.cursor = "pointer";
+    buttonUI.style.padding = "1px 6px";
+
+    buttonUI.style.color = "#59fbea";
+    buttonUI.style.fontFamily = "Coda, Arial,sans-serif";
+    buttonUI.style.fontSize = "15px";
+    buttonUI.style.textAlign = "center";
+
+    buttonUI.title = "投稿する";
+    buttonUI.innerHTML = "投稿する";
+
+    buttonDiv.style.padding = "5px";
+    buttonDiv.appendChild(buttonUI);
+
+    google.maps.event.addDomListener(buttonUI, "click", function () {
+        window.location.href = "http://localhost:8000/post";
+    });
 }
 
 // マーカーのセットを実施する

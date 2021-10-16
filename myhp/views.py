@@ -58,6 +58,50 @@ def home(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required
+def makelist(request):
+    # POST
+    if request.method == 'POST':
+        # フォーム入力のタイトル・詳細・閲覧の有無の取得
+        user = request.user
+        listtitle = request.POST.get('listtitle')
+        listdiscription = request.POST.get('listdiscription')
+        onpublic = request.POST.get('on')
+
+        if onpublic == True:
+            list = Lists.objects.create(user_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=onpublic)
+        else:
+            list = Lists.objects.create(user_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=onpublic)
+        
+        return render(request, 'home.html')
+    else:
+        return render(request, 'makelist.html')
+
+@login_required
+def makepost(request):
+    # POST
+    if request.method == 'POST':
+        # フォーム入力のタイトル・詳細・閲覧の有無の取得
+        user = request.user
+        posttitle = request.POST.get('posttitle')
+        postdiscription = request.POST.get('postdiscription')
+        address = request.POST.get('address')
+        placename = request.POST.get('placename')
+        postimage = request.POST.get('postimage')
+        postlink = request.POST.get('postlink')
+        postdate = request.POST.get('postdate')
+        posthashtag = request.POST.get('posthashtage')
+        onpublic = request.POST.get('on')
+        listvalue = request.POST.get('listvalue')
+        listid = Lists.objects.get(list_title=listvalue)
+        if onpublic == 'on':
+            list = Posts.objects.create(list_id=listid, user_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=onpublic)
+        else:
+            list = Posts.objects.create(list_id=listid, user_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=onpublic)
+        
+        return render(request, 'home.html')
+    else:
+        return render(request, 'makepost.html')
 
 class  AccountRegistration(TemplateView):
 

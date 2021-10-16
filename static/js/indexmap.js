@@ -88,7 +88,7 @@ function ingressControl(buttonDiv, map) {
     buttonDiv.appendChild(buttonUI);
 
     google.maps.event.addDomListener(buttonUI, "click", function () {
-        window.location.href = "http://localhost:8000/post";
+        window.location.href = "http://localhost:8000/makepost";
     });
 }
 

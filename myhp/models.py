@@ -15,7 +15,7 @@ class Account(models.Model):
 class Lists(models.Model):
     list_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    list_title = models.TextField
+    list_title = models.TextField()
     list_discription = models.TextField(blank = True, null = True)
     or_list_public = models.BooleanField(default='False')
     or_list_share = models.BooleanField(default='False')
@@ -24,10 +24,10 @@ class Posts(models.Model):
     post_id = models.AutoField(primary_key=True)
     list_id = models.ForeignKey('myhp.lists', on_delete=models.CASCADE)
     user_id = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    latitude = models.TextField
-    longitude = models.TextField
-    place_name = models.TextField
-    post_title = models.TextField
+    latitude = models.TextField()
+    longitude = models.TextField()
+    place_name = models.TextField()
+    post_title = models.TextField()
     post_discription = models.TextField(blank = True, null = True)
     post_image = models.ImageField(upload_to='images',blank=True, null=True)
     post_link = models.TextField(blank = True, null = True)

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from .models import Lists
+from .models import Posts
 
 # Create your views here.
 

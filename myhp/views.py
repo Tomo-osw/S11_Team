@@ -95,11 +95,11 @@ def makepost(request):
         listvalue = request.POST.get('listvalue')
         listid = Lists.objects.get(list_title=listvalue)
         if onpublic == 'on':
-            list = Posts.objects.create(list_id=listid, user_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=onpublic)
+            list = Posts.objects.create(list_id=listid, user_id_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=onpublic)
         else:
-            list = Posts.objects.create(list_id=listid, user_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=onpublic)
+            list = Posts.objects.create(list_id=listid, user_id_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=onpublic)
         
-        return render(request, 'home.html')
+        return HttpResponseRedirect(reverse('myhp:home'))
     else:
         return render(request, 'makepost.html')
 

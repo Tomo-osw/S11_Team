@@ -69,11 +69,11 @@ def makelist(request):
         onpublic = request.POST.get('on')
 
         if onpublic == True:
-            list = Lists.objects.create(user_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=onpublic)
+            list = Lists.objects.create(user_id_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=True)
         else:
-            list = Lists.objects.create(user_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=onpublic)
+            list = Lists.objects.create(user_id_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=True)
         
-        return render(request, 'home.html')
+        return HttpResponseRedirect(reverse('myhp:home'))
     else:
         return render(request, 'makelist.html')
 

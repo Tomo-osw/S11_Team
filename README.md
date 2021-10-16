@@ -13,4 +13,4 @@
 ## docker-compose exec web bash
 ## python manage.py makemigrations myhp
 ## python manage.py migrate
-## python manage.py createsuperuser.
+## python manage.py createsuperuser

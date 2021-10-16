@@ -138,22 +138,21 @@
         <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
 
             <div class="input-group mb-3  p-md-2">
-                <button type="button" class="btn btn-outline-secondary">全部</button>
+                <!-- <button type="button" class="btn btn-outline-secondary">全部</button>
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
+                </button> -->
 
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">ユーザー</a></li>
-                    <li><a class="dropdown-item" href="#">地名</a></li>
-                    <li><a class="dropdown-item" href="#">ハッシュタグ</a></li>
-                    <li><a class="dropdown-item" href="#">投稿名</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">全部</a></li>
-                </ul>
+                <select class="form-select" id="state" required>
+                    <option value="">全部</option>
+                    <option>ユーザー</option>
+                    <option>地名</option>
+                    <option>ハッシュタグ</option>
+                    <option>投稿名</option>
+                    
+                </select>
+                
                 <input type="text" id="keyword" class="form-control">
                 <button id="search" class="btn btn-primary mb-3">検索</button>
 

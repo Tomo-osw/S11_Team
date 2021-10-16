@@ -19,6 +19,13 @@
 
     <!-- Custom styles for this template -->
     <link href="/static/css/form-validation.css" rel="stylesheet">
+
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <script src="/static/js/form-validation.js"></script>
+    <script src="/static/js/addposttolist.js"></script>
 </head>
 
 <body class="bg-light">
@@ -29,30 +36,12 @@
                 <h4 class="mb-3">リストを追加してください。</h4>
                 <form class="needs-validation" novalidate>
                     <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label for="postTitle" class="form-label">投稿タイトル</label>
-                            <input type="text" class="form-control" id="postTitle" placeholder="ドラゴンズ頑張れ！" value=""
-                                required>
-                            <div class="invalid-feedback">
-                                投稿のタイトルを入力してください
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <label for="placeName" class="form-label">場所の名前</label>
-                            <input type="text" class="form-control" id="placeName" placeholder="バンテリンドーム ナゴヤ" value=""
-                                required>
-                            <div class="invalid-feedback">
-                                共有する地名の名前をいれてください！
-                            </div>
-                        </div>
-
                         <div class="col-12">
-                            <label for="address" class="form-label">住所</label>
-                            <input type="text" class="form-control" id="address"
-                                placeholder="〒461-0047 愛知県名古屋市東区大幸南１丁目１−１" required>
+                            <label for="postTitle" class="form-label">リストの名前</label>
+                            <input type="text" class="form-control" id="postTitle" placeholder="今年度行きたいみんなにもおすすめのラーメン屋"
+                                value="" required>
                             <div class="invalid-feedback">
-                                共有する場所の住所を登録してください
+                                リストの名前を入力してください
                             </div>
                         </div>
 
@@ -60,34 +49,6 @@
                             <label for="memo" class="form-label">メモ</label>
                             <textarea input type="text" class="form-control" id="memo" rows="3"
                                 placeholder="今日のブランコは調子がよかった！今度はだいちゃんも応援しにいきたいぜ！そこでとったブランコのホームランの写真！とても貴重だ！"></textarea>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="picture" class="form-label">写真</label>
-                            <input type="file" class="form-control" id="picture" multiple>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="relatedUrl" class="form-label">関連URL</label>
-                            <input type="text" class="form-control" id="relatedUrl"
-                                placeholder="http://www.nagoya-dome.co.jp/enjoy/access.php">
-                        </div>
-
-                        <div class="input-group col-12" id="datetimepicker" data-target-input="nearest">
-                            <label for="datetimepicker" class="pt-2 pr-2">日付：</label>
-                            <input type="text" data-input class="form-control" data-target="#datetimepicker"
-                                style='background:white' />
-                            <span class="input-group-text" data-toggle>
-                                <i class="far fa-calendar-alt"></i>
-                            </span>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="hashTag" class="form-label">ハッシュタグ</label>
-                            <div class="input-group">
-                                <span class="input-group-text">#</span>
-                                <input type="text" class="form-control" id="hashTag" placeholder="がんばれドラゴンズ">
-                            </div>
                         </div>
 
                         <div class="col-12">
@@ -114,6 +75,15 @@
                             </label>
                         </div>
 
+                        <select class="form-select" id="state" required>
+                            <option value="">とりあえず保存リスト</option>
+                            <option>今度行きたいみんなにもおすすめのラーメン屋</option>
+                            <option>1年記念日アルバム</option>
+                        </select>
+
+                        <div id="liveAlertPlaceholder"></div>
+                        <button type="button" class="btn btn-primary" id="liveAlertBtn">ライブでアラートを表示</button>
+
 
 
                         <hr class="my-4">
@@ -122,19 +92,8 @@
                         <button class="w-100 btn btn-secondary btn-lg" type="submit">キャンセル</button>
                 </form>
             </div>
+        </main>
     </div>
-    </main>
-    </div>
-
-
-    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-
-    <script src="/static/js/form-validation.js"></script>
-
-    <script></script>
-    <script></script>
 </body>
 
 </html>

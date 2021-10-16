@@ -6,35 +6,6 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.template import Context, loader
 
-<<<<<<< HEAD
-my_lists =["今度行きたいみんなにもおすすめのラーメン屋", "1年記念日アルバム", "newalbum1","222"]
-
-
-def index(request):
-    template = loader.get_template('index.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-
-def homemap(request):
-    template = loader.get_template('homemap.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-
-def makepost(request):
-    template = loader.get_template('makepost.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-
-def index2(request):
-    template = loader.get_template('index2.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-
-def indexwhenplacenametapped(request):
-    template = loader.get_template('indexwhenplacenametapped.html')
-    context = {"mylists": my_lists}
-    return HttpResponse(template.render(context, request))
-=======
 from django.views.generic import TemplateView #テンプレートタグ
 from .forms import AccountForm #ユーザーアカウントフォーム
 from django.contrib.auth import authenticate, login, logout
@@ -122,7 +93,3 @@ class  AccountRegistration(TemplateView):
             print(self.params["account_form"].errors)
 
         return render(request,"register.html",context=self.params)
-
-
-
->>>>>>> 5162d33b671c50f08ca518c54c952febd5305850

@@ -26,6 +26,7 @@ class Posts(models.Model):
     user_id = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     latitude = models.TextField()
     longitude = models.TextField()
+    address = models.TextField()
     place_name = models.TextField()
     post_title = models.TextField()
     post_discription = models.TextField(blank = True, null = True)

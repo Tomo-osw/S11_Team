@@ -5,7 +5,6 @@ from django.shortcuts import redirect
 
 from django.http import HttpResponse
 from django.template import Context, loader
-
 from django.views.generic import TemplateView #テンプレートタグ
 from .forms import AccountForm #ユーザーアカウントフォーム
 from django.contrib.auth import authenticate, login, logout
@@ -93,6 +92,5 @@ class  AccountRegistration(TemplateView):
             print(self.params["account_form"].errors)
 
         return render(request,"register.html",context=self.params)
-
 
 

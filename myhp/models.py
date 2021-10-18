@@ -20,6 +20,21 @@ class Lists(models.Model):
     or_list_public = models.BooleanField(default='False')
     or_list_share = models.BooleanField(default='False')
 
+class ListsShares(models.Model):
+    list_share_id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    list_id = models.ForeignKey('myhp.lists', on_delete=models.CASCADE)
+    for_user1_id = models.IntegerField(blank = True, null = True)
+    for_user2_id = models.IntegerField(blank = True, null = True)
+    for_user3_id = models.IntegerField(blank = True, null = True)
+    for_user4_id = models.IntegerField(blank = True, null = True)
+    for_user5_id = models.IntegerField(blank = True, null = True)
+    for_user6_id = models.IntegerField(blank = True, null = True)
+    for_user7_id = models.IntegerField(blank = True, null = True)
+    for_user8_id = models.IntegerField(blank = True, null = True)
+    for_user9_id = models.IntegerField(blank = True, null = True)
+
+
 class Posts(models.Model):
     post_id = models.AutoField(primary_key=True)
     list_id = models.ForeignKey('myhp.lists', on_delete=models.CASCADE)
@@ -38,3 +53,17 @@ class Posts(models.Model):
     or_post_share = models.BooleanField(default='False')
     updated_time = models.DateTimeField(default=timezone.now)
     created_time = models.DateTimeField(default=timezone.now)
+
+class PostsShares(models.Model):
+    post_share_id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    post_id = models.ForeignKey('myhp.lists', on_delete=models.CASCADE)
+    for_user1_id = models.IntegerField(blank = True, null = True)
+    for_user2_id = models.IntegerField(blank = True, null = True)
+    for_user3_id = models.IntegerField(blank = True, null = True)
+    for_user4_id = models.IntegerField(blank = True, null = True)
+    for_user5_id = models.IntegerField(blank = True, null = True)
+    for_user6_id = models.IntegerField(blank = True, null = True)
+    for_user7_id = models.IntegerField(blank = True, null = True)
+    for_user8_id = models.IntegerField(blank = True, null = True)
+    for_user9_id = models.IntegerField(blank = True, null = True) 

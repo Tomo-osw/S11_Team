@@ -55,10 +55,16 @@ def Logout(request):
 
 @login_required
 def home(request):
-    template = loader.get_template('home.html')
-    context = {"UserID":request.user,}
-    return HttpResponse(template.render(context, request))
-
+    if request.method == 'POST':
+        select_value = request.GET.get('selectvalue')
+        free_box = request.GET.get('freebox')
+        template = loader.get_template('home.html')
+        context = {"UserID":request.user,}
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('home.html')
+        context = {"UserID":request.user,}
+        return HttpResponse(template.render(context, request))
 
 @login_required
 def makelist(request):
@@ -131,6 +137,10 @@ class  AccountRegistration(TemplateView):
 
             # アカウント作成情報更新
             self.params["AccountCreate"] = True
+            
+            user = request.user
+            list = Lists.objects.create(user_id_id=user.id, list_title='とりあえず保存リスト')
+            list = Lists.objects.create(user_id_id=user.id, list_title='Test', list_discription="テスト用です", or_list_public=True)
 
             return HttpResponseRedirect(reverse('myhp:home'))
 

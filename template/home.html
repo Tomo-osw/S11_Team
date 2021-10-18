@@ -144,19 +144,19 @@
                     <span class="visually-hidden">Toggle Dropdown</span>
                 </button> -->
 
-                <select class="form-select" id="state" required>
-                    <option value="">全部</option>
-                    <option>ユーザー</option>
-                    <option>地名</option>
-                    <option>ハッシュタグ</option>
-                    <option>投稿名</option>
+                <form method="post">{% csrf_token %}
+                    <select class="form-select" id="state" name="selectvalue" required>
+                        <option value="0">全部</option>
+                        <option value="1">ユーザー</option>
+                        <option value="2">地名</option>
+                        <option value="3">ハッシュタグ</option>
+                        <option value="4">投稿名</option>
+                        
+                    </select>
                     
-                </select>
-                
-                <input type="text" id="keyword" class="form-control">
-                <button id="search" class="btn btn-primary mb-3">検索</button>
-
-
+                    <input type="text" id="keyword" name="freebox" class="form-control">
+                    <button id="search" class="btn btn-primary mb-3">検索</button>
+                </form>
             </div>
 
 

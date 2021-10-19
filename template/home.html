@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Sidebars · Bootstrap v5.0</title>
+    <title></title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/" crossorigin="anonymous">
 
@@ -368,90 +368,27 @@
                 <span class="fs-5 fw-semibold">My List</span>
             </a>
             <div class="list-group list-group-flush border-bottom scrollarea">
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">とりあえず保存リスト</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
 
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">とりあえず保存した場所リストです。あとでちゃんとリストに分類しましょう
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">今度行きたいみんなにもおすすめのラーメン屋</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
+            
 
-                                </label>
-                            </div>
-                        </small>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">ぜひ皆さん僕の完食日記まで見ていってください！
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">1年記念日アルバム</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">みたこちゃんとの一年記念日に旅行にいった思い出を残します
-                    </div>
-                </a>
-
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">List group item heading</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">List group item heading</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.
-                    </div>
-                </a>
+                {% for list in lists %}
+                    {% if list.or_list_public %}
+                    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                            <strong class="mb-1">{{ list.list_title }}</strong>
+                            <small class="text-muted">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    </label>
+                                </div>
+                            </small>
+                        </div>
+                        <div class="col-10 mb-1 small">{{ list.list_discription }}
+                        </div>
+                    </a>
+                    {% endif %}
+                {% endfor %}
             </div>
 
             <a href="/"
@@ -460,112 +397,27 @@
                 <span class="fs-5 fw-semibold">共有済みリスト</span>
             </a>
 
+            
             <div class="list-group list-group-flush border-bottom scrollarea">
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">岡山旅行With名東高校メンバー</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
+            {% for list in lists %}
+                {% if list.or_list_share %}
+                    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                            <strong class="mb-1">{{list.list_title}}</strong>
+                            <small class="text-muted">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
 
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Sharefrom ryoumurata11
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">今度行きたいガジェット店</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Share from tomo.osw2112
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">名古屋住みで飲むの会</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Share from hiroto.code
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">7月アカペラコンテスト</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Share from htugu3258
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">List group item heading</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">List group item heading</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">List group item heading</strong>
-                        <small class="text-muted">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-
-                                </label>
-                            </div>
-                        </small>
-                    </div>
-                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.
-                    </div>
-                </a>
+                                    </label>
+                                </div>
+                            </small>
+                        </div>
+                        <div class="col-10 mb-1 small">{{list.list_discription}}
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
             </div>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-black-50 text-decoration-none dropdown-toggle"

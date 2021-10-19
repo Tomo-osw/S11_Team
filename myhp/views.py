@@ -7,7 +7,7 @@ from .models import Posts
 
 from django.http import HttpResponse
 from django.template import Context, loader
-from django.views.generic import TemplateView #テンプレートタグ
+from django.views.generic import TemplateView, ListView #テンプレートタグ
 from .forms import AccountForm #ユーザーアカウントフォーム
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -30,7 +30,7 @@ def Login(request):
         # ユーザー認証
         if user:
             #ユーザーアクティベート判定
-            if user.is_active:
+            if user:
                 # ログイン
                 login(request,user)
 
@@ -41,6 +41,7 @@ def Login(request):
                 return HttpResponse("アカウントが有効ではありません")
         # ユーザー認証失敗
         else:
+            print(user)
             return HttpResponse("ログインIDまたはパスワードが間違っています")
     # GET
     else:
@@ -53,12 +54,15 @@ def Logout(request):
     # ログイン画面遷移
     return HttpResponseRedirect(reverse('myhp:Login'))
 
+
+#メインのホームページ
 @login_required
 def home(request):
     if request.method == 'POST':
         select_value = request.GET.get('selectvalue')
         free_box = request.GET.get('freebox')
         template = loader.get_template('home.html')
+
         context = {"UserID":request.user,}
         return HttpResponse(template.render(context, request))
     else:
@@ -66,6 +70,7 @@ def home(request):
         context = {"UserID":request.user,}
         return HttpResponse(template.render(context, request))
 
+#リストの作成画面
 @login_required
 def makelist(request):
     # POST
@@ -79,12 +84,13 @@ def makelist(request):
         if onpublic == True:
             list = Lists.objects.create(user_id_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=True)
         else:
-            list = Lists.objects.create(user_id_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=True)
-        
+            list = Lists.objects.create(user_id_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_share=True)
+
         return HttpResponseRedirect(reverse('myhp:home'))
     else:
         return render(request, 'makelist.html')
 
+#
 @login_required
 def makepost(request):
     # POST
@@ -101,7 +107,7 @@ def makepost(request):
         posthashtag = request.POST.get('posthashtage')
         onpublic = request.POST.get('on')
         listvalue = request.POST.get('listvalue')
-        listid = Lists.objects.get(list_title=listvalue)
+        #listid = Lists.objects.get(list_title=listvalue)
         if onpublic == 'on':
             list = Posts.objects.create(list_id=listid, user_id_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=True)
         else:
@@ -135,12 +141,16 @@ class  AccountRegistration(TemplateView):
             # アカウント情報をDB保存
             account = self.params["account_form"].save()
 
+            account.set_password(account.password)
+
+            account.save()
+
             # アカウント作成情報更新
             self.params["AccountCreate"] = True
             
-            user = request.user
-            list = Lists.objects.create(user_id_id=user.id, list_title='とりあえず保存リスト')
-            list = Lists.objects.create(user_id_id=user.id, list_title='Test', list_discription="テスト用です", or_list_public=True)
+            user_id = request.user.id
+            list = Lists.objects.create(user_id_id=user_id, list_title='とりあえず保存リスト')
+            list = Lists.objects.create(user_id_id=user_id, list_title='Test', list_discription="テスト用です", or_list_public=True)
 
             return HttpResponseRedirect(reverse('myhp:home'))
 
@@ -150,4 +160,27 @@ class  AccountRegistration(TemplateView):
 
         return render(request,"register.html",context=self.params)
 
+class HomeListView(ListView):
+    model = Lists
+    template_name = 'home.html'
+    context_object_name = 'lists'
+    ordering = ['-list_id']
+
+def editlist(request):
+    # POST
+    if request.method == 'POST':
+        # フォーム入力のタイトル・詳細・閲覧の有無の取得
+        user = request.user
+        listtitle = request.POST.get('listtitle')
+        listdiscription = request.POST.get('listdiscription')
+        onpublic = request.POST.get('on')
+
+        if onpublic == True:
+            list = Lists.objects.create(user_id_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_public=True)
+        else:
+            list = Lists.objects.create(user_id_id=user.id, list_title=listtitle, list_discription=listdiscription, or_list_share=True)
+
+        return HttpResponseRedirect(reverse('myhp:home'))
+    else:
+        return render(request, 'editlist.html')
 

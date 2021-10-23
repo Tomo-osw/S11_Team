@@ -107,12 +107,13 @@ def makepost(request):
         posthashtag = request.POST.get('posthashtage')
         onpublic = request.POST.get('on')
         listvalue = request.POST.get('listvalue')
-        #listid = Lists.objects.get(list_title=listvalue)
+        listid = Lists.objects.filter(list_title=listvalue, user_id_id=user.id).values_list('list_id', flat=True)
         if onpublic == 'on':
-            list = Posts.objects.create(list_id=listid, user_id_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=True)
+            post = Posts.objects.create(list_id_id=listid, user_id_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=True)
         else:
-            list = Posts.objects.create(list_id=listid, user_id_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=True)
+            post = Posts.objects.create(list_id_id=listid, user_id_id=user.id, address=address, place_name=placename, post_title=posttitle, post_discription=postdiscription, post_image=postimage, post_link=postlink, post_date=postdate, post_hashtag=posthashtag, or_datail=True)
         
+       
         return HttpResponseRedirect(reverse('myhp:home'))
     else:
         return render(request, 'makepost.html')
